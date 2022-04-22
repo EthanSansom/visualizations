@@ -121,33 +121,30 @@ shapes_length <- dim(shapes)[1]
 # Repeat every row of the data four times
 shapes <- shapes[sapply(1:shapes_length, function (x) rep(x, 4)), ]
 
-# Increment over each row of shapes to create (x0, y0), (x1, y0), (x0, y1), (x1, y1)
-for (i in 1:(shapes_length*4)) {
-  
-  if (i %% 4 == 0) {
-    # Change (x0, y0) to (x1, y0)
-    shapes[i, ]$x0 <- shapes[i, ]$x0 + shapes[i, ]$w
-    
-  } else if (i %% 4 == 1) {
-    # Change (x0, y0) to (x0, y1)
-    shapes[i, ]$x0 <- shapes[i, ]$x0 + shapes[i, ]$w
-    shapes[i, ]$y0 <- shapes[i, ]$y0 + shapes[i, ]$h
-    
-  } else if (i %% 4 == 2) {
-    # Change (x0, y0) to (x1, y1)
-    shapes[i, ]$y0 <- shapes[i, ]$y0 + shapes[i, ]$h
-    
-  } else { 
-    # Do Nothing
-  }
-}
+# Create four points (x0, y0), (x1, y0), (x0, y1), (x1, y1)
+shapes <-
+  shapes |>
+  mutate(
+    x =
+      case_when(
+        row_number() %% 4 == 0 ~ x0 + w,
+        row_number() %% 4 == 1 ~ x0 + w,
+        TRUE ~ x0
+        ),
+    y = 
+      case_when(
+        row_number() %% 4 == 1 ~ y0 + h,
+        row_number() %% 4 == 2 ~ y0 + h,
+        TRUE ~ y0
+      )
+  )
 
 # Plot the squares
 ggplot(
   data = shapes, 
   aes(
-    x = x0, y = y0, 
-    group = id, 
+    x = x, y = y, 
+    group = id,
     fill = as.factor(id)    # Change fill to area for mono coloured blocks
     )
   ) +
@@ -187,5 +184,3 @@ ggplot(
 # all of the coordinates before hand by same (x, y) shift for each block, then
 # plot them together that way. As it is, the close packing format works nicely for
 # multiple groups anyways.
-
-print("\U0001f600")
