@@ -145,7 +145,7 @@ ggplot(
   aes(
     x = x, y = y, 
     group = id,
-    fill = as.factor(id)    # Change fill to area for mono coloured blocks
+    fill = as.factor(id)    # Change fill to "area" for mono coloured blocks
     )
   ) +
   
