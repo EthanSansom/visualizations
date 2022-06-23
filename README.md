@@ -4,15 +4,11 @@ Below are some brief replications of the chart styles used by Rosenberg Research
 
 #### Bar Charts
 
-![A Bar Chart](outputs/barplot1.png)
-
-![A Second Bar Chart](outputs/barplot2.png)
+![A Bar Chart](outputs/barplot1.png) | ![A Second Bar Chart](outputs/barplot2.png)
 
 #### Line Charts
 
-![A Line Chart](outputs/timeseries1.png)
-
-![A Second Line Chart](outputs/timeseries2.png)
+![A Line Chart](outputs/timeseries1.png) | ![A Second Line Chart](outputs/timeseries2.png)
 
 #### Choropleth
 
