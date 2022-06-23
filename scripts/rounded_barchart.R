@@ -111,7 +111,7 @@ ggplot(df, aes(x = seats, y = party, col = party)) +
     legend.position = "none",
     
     # Set margin
-    plot.margin = margin(t = 2, r = 2, b = 2, l = 2, unit = "cm"),
+    plot.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0, unit = "pt"),
     
     # Set rich text label elements
     plot.caption = ggtext::element_markdown(hjust = 0, lineheight = 1.2),
